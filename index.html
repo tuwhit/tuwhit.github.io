@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="default">
 
 <!-- Head tag -->
 <head>
@@ -197,17 +197,29 @@
       <aside>
         <h1 class="widget-title">Search</h1>
         <div class="widget-text">
-          <form onSubmit="return appDaily.submitSearch('')">
+          <div id="site_search">
             <p>
-              <input type="text" placeholder="search..." id="homeSearchInput">
+              <input type="text" placeholder="검색" id="local-search-input" name="q" results="0" class="form-control"/>
             </p>
-            <!-- <input type="submit" value="GO"> -->
-          </form>
+              <div id="local-search-result">
+          </div>
         </div>
       </aside>
     </div>
   </div>
 </div>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/search.js"></script>   
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
 <!-- Footer -->
 <footer class="site-info">
   <p>
@@ -218,7 +230,6 @@
     
   </p>
 </footer>
-
 
   <!-- After footer scripts -->
   <!-- scripts -->
