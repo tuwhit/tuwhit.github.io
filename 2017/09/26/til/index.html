@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="블로그 개설"/>
+      <meta property="og:title" content="UI와 UX에 대한 개념 정리"/>
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>블로그 개설 - 개발새발 블로그</title>
+  <title>UI와 UX에 대한 개념 정리 - 개발새발 블로그</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -121,25 +121,25 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            블로그 개설
+            UI와 UX에 대한 개념 정리
             
           </h1>
           <p class="posted-on">
-          2017-09-24
+          2017-09-26
           </p>
           <div class="tags-links">
             
               
-                <a href="/tags/blog/" rel="tag">
-                  blog
+                <a href="/tags/UI/" rel="tag">
+                  UI
                 </a>
               
-                <a href="/tags/github/" rel="tag">
-                  github
+                <a href="/tags/UX/" rel="tag">
+                  UX
                 </a>
               
-                <a href="/tags/hexo/" rel="tag">
-                  hexo
+                <a href="/tags/Design/" rel="tag">
+                  Design
                 </a>
               
             
@@ -148,10 +148,28 @@
         <!-- Post Main Content -->
         <div class="entry-content">
           <hr>
-<p><a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>, <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a> 로 블로그 개설! <a href="https://jekyllrb-ko.github.io/" target="_blank" rel="external">Jekyll</a>을 이용해서 만들까 하다가 Ruby는 회사에서 많이 쓰니 Node.js 기반인 Hexo로 선택했다. 근데 뭐 Node.js 까막눈이어도 눈칫껏 만져보니 기존 테마에 살짝 커스텀하는 정도는 금방 하는듯. Markdown 문법도 잘 몰라서 <a href="https://gist.github.com/ihoneymon/652be052a0727ad59601" target="_blank" rel="external">Markdown 작성법</a> 보면서 이래저래 써보는 중인데 꽤 재밌다. 블로그 메뉴를 어떻게 나눌지, footer 엔 어떤 위젯을 넣을지, 로고는 뭘로 할지 고민. 10대때 열심히 네이버 블로그 꾸미던 시절 생각난다. 하악하악 재밌어!</p>
-<p><a href="https://github.com/GallenHu/hexo-theme-Daily/wiki" target="_blank" rel="external">Daily 테마 위키</a>에 comment field 추가하려면 <code>_config.yml</code> 파일에<br><code>disqus_shortname: your-disqus-shortname</code> 만 추가해주면 된다고 했는데 코멘트 영역이 안뜸…^ㅅㅠ 다행히 <a href="https://disqus.com/" target="_blank" rel="external">disqus 홈페이지</a>에 들어가보니 site - installation 메뉴에 코드가 제공돼있었다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"disqus_thread"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.</span></div><div class="line"><span class="comment">*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/</span></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">var disqus_config = function () &#123;</span></div><div class="line"><span class="comment">this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable</span></div><div class="line"><span class="comment">this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable</span></div><div class="line"><span class="comment">&#125;;</span></div><div class="line"><span class="comment">*/</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// DON'T EDIT BELOW THIS LINE</span></div><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>, s = d.createElement(<span class="string">'script'</span>);</div><div class="line">s.src = <span class="string">'https://tuwhit.disqus.com/embed.js'</span>;</div><div class="line">s.setAttribute(<span class="string">'data-timestamp'</span>, +<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">(d.head || d.body).appendChild(s);</div><div class="line">&#125;)();</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;noscript&gt;Please enable JavaScript to view the &lt;a href="https:/</span><span class="regexp">/disqus.com/</span>?ref_noscript<span class="string">"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</span></div></pre></td></tr></table></figure></p>
-<p>Disqus가 들어갈 부분에 위 코드를 넣으니 해결!</p>
-<p>테마 적용후 deploy 했는데 반영되는데 시간이 꽤 걸리나보다. 계속 깨져보이길래 제대로 deploy 안된줄알고 구글링중이었는데, 몇분 지나니까 잘 반영돼 있음.</p>
+<p>프로젝트 진행중에 UX 설계를 해볼일이 생겼는데, 디알못이라 뭘 어떻게 해야할지 영 감이 잘 안잡혀서 일단 UI, UX의 개념이라도 정리해봤다.(정리하다보니 생각났는데 옛날에 Human Centered Design 스터디를 한적이 있는데, 그것도 UX Design에 속하는 거였나 싶음)</p>
+<h3 id="UI-User-Interface"><a href="#UI-User-Interface" class="headerlink" title="UI(User Interface)"></a>UI(User Interface)</h3><ul>
+<li>일련의 화면, 페이지 및 장치와 상호작용할 때 사용하는 시각적 요소</li>
+</ul>
+<h3 id="UX-User-Experience"><a href="#UX-User-Experience" class="headerlink" title="UX(User Experience)"></a>UX(User Experience)</h3><ul>
+<li>회사, 서비스 및 제품과 상호 작용하는 사용자의 경험</li>
+<li>UX Design<ul>
+<li>실제 필드에서 사용자를 관찰하고, 그 결과를 바탕으로 디자인</li>
+<li>누가, 왜, 무엇을, 어떻게 사용하는지를 고려해야함</li>
+<li>어떤 목적인지, 어떤 의도가 있는지, 어떻게 쓰였으면 좋겠는지에 대해 고민 필요</li>
+</ul>
+</li>
+</ul>
+<h3 id="UI와-UX의-차이점-에-대한-전문가들의-생각"><a href="#UI와-UX의-차이점-에-대한-전문가들의-생각" class="headerlink" title="UI와 UX의 차이점(에 대한 전문가들의 생각)"></a>UI와 UX의 차이점<del>(에 대한 전문가들의 생각)</del></h3><ul>
+<li>UX는 문제를 해결하기위한 사용자의 여정에 포커스를 두고 UI는 제품 표면의 모습과 기능에 초점을 맞춘다. - Ken Norton</li>
+<li>UX 디자이너는 디자인 프로세스의 개념적 측면에 관심을 가지기 때문에 UI 디자이너는 보다 확실한 요소에 집중할 수 있다. - Andy Budd</li>
+<li>UX와 UI 디자인은 서로 비교할 수 없는 두가지이므로 차이가 없다. -Craig Morrision</li>
+<li>UI는 일반적으로 화면 주변의 시각적 디자인 및 정보 디자인에 관한것이다. UX는 완벽한 경험에 관한 것이므로 화면과 관련이 없을 수 있다. - Patrick Neema</li>
+<li>UI는 제품에 중점을 두고 있으며 일련의 스냅샷을 제시간에 제공한다. UX는 사용자 및 제품을 통한 이동에 초점을 맞춘다. - Scott Jenson</li>
+<li>UX는 사용자가 제품을 사용하여 얻은 전반적인 경험이며 UI는 사용자가 실제로 상호 작용하고 볼수있는 것이다. - Clayton Yan</li>
+</ul>
+<p>API 로직을 고려하면서 UX 설계를 하려니 쉬운일이 아닌것같다. UX를 우선으로 하자니 로직 개선하기가 빡세고, 쉽게 가자니 UX가 좋지 않은것 같고… 엉엉</p>
 
         </div>
       </article>
@@ -183,10 +201,10 @@ s.setAttribute('data-timestamp', +new Date());
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2017/09/26/til/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Newer Posts</a>
-        </div>
       
+        <div class="nav-next">
+          <a href="/2017/09/24/first-post/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
       
     </div>
 
