@@ -1,11 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search> 
+<!DOCTYPE html>
+<html lang="default">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
   
-    
-    <entry>
-      <title><![CDATA[개복치같은 서버를 살리기위한 삽질기(ing)]]></title>
-      <url>/2017/10/13/server-sabjil/</url>
-      <content type="html"><![CDATA[<hr>
+
+  <!--Author-->
+  
+  <meta name="author" content="Hyunkyung Ahn">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="개복치같은 서버를 살리기위한 삽질기(ing)"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="개발새발 블로그"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>개복치같은 서버를 살리기위한 삽질기(ing) - 개발새발 블로그</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="개발새발 블로그" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  rss
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            개복치같은 서버를 살리기위한 삽질기(ing)
+            
+          </h1>
+          <p class="posted-on">
+          2017-10-13
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Server/" rel="tag">
+                  Server
+                </a>
+              
+                <a href="/tags/Lambda/" rel="tag">
+                  Lambda
+                </a>
+              
+                <a href="/tags/node.js/" rel="tag">
+                  node.js
+                </a>
+              
+                <a href="/tags/UptimeRobot/" rel="tag">
+                  UptimeRobot
+                </a>
+              
+                <a href="/tags/Monitoring/" rel="tag">
+                  Monitoring
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <hr>
 <p>작년에 신규 프로젝트를 진행하면서 기존 ruby 서버가 아닌 python 으로 별도의 서버를 띄웠다. Java로 된 별도의 암호화모듈을 사용해야해서 Py4J을 이용했다. 그런데 이 라이브러리의 문제인지 메모리 누수 때문인지 원인은 모르겠지만 2-3주정도 주기로 암호화모듈쪽에서 에러가 나기 시작하면서 그 이후의 모든 요청에서 같은 에러가 발생했다. 기존에 url lib 를 썼던것을 requests 를 사용하도록 수정했지만 에러 발생주기가 조금 길어졌을 뿐 해결이 되지않았다. 일단 원인을 찾는것은 뒤로 미루고 Lambda와 Cloud Watch를 이용해서 매일 새벽2시에 인스턴스를 리붓시키도록 했다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AWS = <span class="built_in">require</span>(<span class="string">'aws-sdk'</span>);</div><div class="line"></div><div class="line">exports.handler = <span class="function">(<span class="params">event, context, callback</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> ec2 = <span class="keyword">new</span> AWS.EC2(&#123;<span class="attr">region</span>: <span class="string">'ap-northeast-2'</span>&#125;);</div><div class="line">    </div><div class="line">    ec2.rebootInstances(&#123;<span class="attr">InstanceIds</span> : [<span class="string">'instance-ID'</span>] &#125;,<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="built_in">console</span>.log(err.stack);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(data);</div><div class="line">        context.done(err,data);</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>이후 몇달간 서버에 이상이 없는듯 하더니 어느날 아예 500에러가 나기시작했다. -_- 원인을 찾아보려 서버에 접속해봤더니 컨테이너가 아예 없었다. 리붓하면서 컨테이너가 제대로 생성되지 않은것 같았다. Docker 관련 지식이 얕아 원인을 알수가 없어서 일단 인스턴스를 새로 생성하는 것으로 해결을 했다. 그리고 UptimeRobot을 이용해 5분에 한번 서버에 request를 보내고, 문제가 있으면 slack으로 alert message를 남기도록 했다.</p>
@@ -17,89 +167,121 @@
 <p>그런데 깜빡하고 Lambda 코드에 바뀐 인스턴스 ID로 수정하지 않아서(아오) 3주뒤 또 암호화 모듈 에러가 발생했다. 이런 휴먼에러를 발생시키지 않기위해 코드를 몇줄 더 추가했다. ㅠㅠ<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AWS = <span class="built_in">require</span>(<span class="string">'aws-sdk'</span>);</div><div class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">'https'</span>);</div><div class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> POST_OPTIONS = &#123;</div><div class="line">    hostname: <span class="string">'hooks.slack.com'</span>,</div><div class="line">    path: <span class="string">'slack web-hook url'</span>,</div><div class="line">    method: <span class="string">'POST'</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.handler = <span class="function">(<span class="params">event, context, callback</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> ec2 = <span class="keyword">new</span> AWS.EC2(&#123;<span class="attr">region</span>: <span class="string">'ap-northeast-2'</span>&#125;);</div><div class="line">    <span class="keyword">const</span> failed_message = &#123;</div><div class="line">        channel: <span class="string">'service-alerts'</span>,</div><div class="line">        text: <span class="string">'Instace Reboot Failed'</span></div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="comment">// check if instance exists</span></div><div class="line">    ec2.describeInstances(&#123;<span class="attr">InstanceIds</span> : [<span class="string">'instance-ID'</span>]&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span> (err) &#123;  <span class="comment">// if doesn't exist, send slack alert</span></div><div class="line">            <span class="keyword">var</span> r = https.request(POST_OPTIONS, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">                        res.setEncoding(<span class="string">'utf8'</span>);</div><div class="line">                        res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">                            context.succeed(<span class="string">"Message Sent: "</span> + data);</div><div class="line">                     &#125;);</div><div class="line">            &#125;).on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;context.fail(<span class="string">"Failed: "</span> + e);&#125; );</div><div class="line">            r.write(util.format(<span class="string">"%j"</span>, failed_message));</div><div class="line">            r.end();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;    <span class="comment">// exist</span></div><div class="line">            <span class="comment">// reboot instance</span></div><div class="line">            ec2.rebootInstances(&#123;<span class="attr">InstanceIds</span> : [<span class="string">'instance-ID'</span>] &#125;,<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err) &#123;  <span class="comment">// send slack alert</span></div><div class="line">                <span class="keyword">var</span> r = https.request(POST_OPTIONS, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">                            res.setEncoding(<span class="string">'utf8'</span>);</div><div class="line">                            res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">                                context.succeed(<span class="string">"Message Sent: "</span> + data);</div><div class="line">                         &#125;);</div><div class="line">                &#125;).on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;context.fail(<span class="string">"Failed: "</span> + e);&#125; );</div><div class="line">                r.write(util.format(<span class="string">"%j"</span>, failed_message));</div><div class="line">                r.end();</div><div class="line">            &#125; <span class="keyword">else</span> <span class="built_in">console</span>.log(data);</div><div class="line">                context.done(err,data);</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p>리붓시킬 인스턴스를 먼저 찾고 없으면 슬랙으로 alert message를 보내고, 있으면 해당 인스턴스를 리붓시킨다. 리붓시 에러가 나도 슬랙으로 alert message를 보낸다.</p>
 <p>애초에 에러의 원인을 찾아서 해결했어야하는데 다른일들로 시간적 여유가 없다보니 그때그때 서버만 살리고 뒷전으로 미뤄뒀던 것에 반성을… 틈틈히 시간내서 원인파악을 해야겠다.</p>
-]]></content>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tuwhit.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
       
-        
-        <tags>
-            
-            <tag> Server </tag>
-            
-            <tag> Lambda </tag>
-            
-            <tag> node.js </tag>
-            
-            <tag> UptimeRobot </tag>
-            
-            <tag> Monitoring </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[UI와 UX에 대한 개념 정리]]></title>
-      <url>/2017/09/26/til/</url>
-      <content type="html"><![CDATA[<hr>
-<p>프로젝트 진행중에 UX 설계를 해볼일이 생겼는데, 디알못이라 뭘 어떻게 해야할지 영 감이 잘 안잡혀서 일단 UI, UX의 개념이라도 정리해봤다.(정리하다보니 생각났는데 옛날에 Human Centered Design 스터디를 한적이 있는데, 그것도 UX Design에 속하는 거였나 싶음)</p>
-<h3 id="UI-User-Interface"><a href="#UI-User-Interface" class="headerlink" title="UI(User Interface)"></a>UI(User Interface)</h3><ul>
-<li>일련의 화면, 페이지 및 장치와 상호작용할 때 사용하는 시각적 요소</li>
-</ul>
-<h3 id="UX-User-Experience"><a href="#UX-User-Experience" class="headerlink" title="UX(User Experience)"></a>UX(User Experience)</h3><ul>
-<li>회사, 서비스 및 제품과 상호 작용하는 사용자의 경험</li>
-<li>UX Design<ul>
-<li>실제 필드에서 사용자를 관찰하고, 그 결과를 바탕으로 디자인</li>
-<li>누가, 왜, 무엇을, 어떻게 사용하는지를 고려해야함</li>
-<li>어떤 목적인지, 어떤 의도가 있는지, 어떻게 쓰였으면 좋겠는지에 대해 고민 필요</li>
-</ul>
-</li>
-</ul>
-<h3 id="UI와-UX의-차이점-에-대한-전문가들의-생각"><a href="#UI와-UX의-차이점-에-대한-전문가들의-생각" class="headerlink" title="UI와 UX의 차이점(에 대한 전문가들의 생각)"></a>UI와 UX의 차이점<del>(에 대한 전문가들의 생각)</del></h3><ul>
-<li>UX는 문제를 해결하기위한 사용자의 여정에 포커스를 두고 UI는 제품 표면의 모습과 기능에 초점을 맞춘다. - Ken Norton</li>
-<li>UX 디자이너는 디자인 프로세스의 개념적 측면에 관심을 가지기 때문에 UI 디자이너는 보다 확실한 요소에 집중할 수 있다. - Andy Budd</li>
-<li>UX와 UI 디자인은 서로 비교할 수 없는 두가지이므로 차이가 없다. -Craig Morrision</li>
-<li>UI는 일반적으로 화면 주변의 시각적 디자인 및 정보 디자인에 관한것이다. UX는 완벽한 경험에 관한 것이므로 화면과 관련이 없을 수 있다. - Patrick Neema</li>
-<li>UI는 제품에 중점을 두고 있으며 일련의 스냅샷을 제시간에 제공한다. UX는 사용자 및 제품을 통한 이동에 초점을 맞춘다. - Scott Jenson</li>
-<li>UX는 사용자가 제품을 사용하여 얻은 전반적인 경험이며 UI는 사용자가 실제로 상호 작용하고 볼수있는 것이다. - Clayton Yan</li>
-</ul>
-<p>API 로직을 고려하면서 UX 설계를 하려니 쉬운일이 아닌것같다. UX를 우선으로 하자니 로직 개선하기가 빡세고, 쉽게 가자니 UX가 좋지 않은것 같고… 엉엉</p>
-]]></content>
       
-        
-        <tags>
-            
-            <tag> UI </tag>
-            
-            <tag> UX </tag>
-            
-            <tag> Design </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[블로그 개설]]></title>
-      <url>/2017/09/24/first-post/</url>
-      <content type="html"><![CDATA[<hr>
-<p><a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>, <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a> 로 블로그 개설! <a href="https://jekyllrb-ko.github.io/" target="_blank" rel="external">Jekyll</a>을 이용해서 만들까 하다가 Ruby는 회사에서 많이 쓰니 Node.js 기반인 Hexo로 선택했다. 근데 뭐 Node.js 까막눈이어도 눈칫껏 만져보니 기존 테마에 살짝 커스텀하는 정도는 금방 하는듯. Markdown 문법도 잘 몰라서 <a href="https://gist.github.com/ihoneymon/652be052a0727ad59601" target="_blank" rel="external">Markdown 작성법</a> 보면서 이래저래 써보는 중인데 꽤 재밌다. 블로그 메뉴를 어떻게 나눌지, footer 엔 어떤 위젯을 넣을지, 로고는 뭘로 할지 고민. 10대때 열심히 네이버 블로그 꾸미던 시절 생각난다. 하악하악 재밌어!</p>
-<p><a href="https://github.com/GallenHu/hexo-theme-Daily/wiki" target="_blank" rel="external">Daily 테마 위키</a>에 comment field 추가하려면 <code>_config.yml</code> 파일에<br><code>disqus_shortname: your-disqus-shortname</code> 만 추가해주면 된다고 했는데 코멘트 영역이 안뜸…^ㅅㅠ 다행히 <a href="https://disqus.com/" target="_blank" rel="external">disqus 홈페이지</a>에 들어가보니 site - installation 메뉴에 코드가 제공돼있었다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"disqus_thread"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.</span></div><div class="line"><span class="comment">*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/</span></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">var disqus_config = function () &#123;</span></div><div class="line"><span class="comment">this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable</span></div><div class="line"><span class="comment">this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable</span></div><div class="line"><span class="comment">&#125;;</span></div><div class="line"><span class="comment">*/</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// DON'T EDIT BELOW THIS LINE</span></div><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>, s = d.createElement(<span class="string">'script'</span>);</div><div class="line">s.src = <span class="string">'https://tuwhit.disqus.com/embed.js'</span>;</div><div class="line">s.setAttribute(<span class="string">'data-timestamp'</span>, +<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">(d.head || d.body).appendChild(s);</div><div class="line">&#125;)();</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;noscript&gt;Please enable JavaScript to view the &lt;a href="https:/</span><span class="regexp">/disqus.com/</span>?ref_noscript<span class="string">"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</span></div></pre></td></tr></table></figure></p>
-<p>Disqus가 들어갈 부분에 위 코드를 넣으니 해결!</p>
-<p>테마 적용후 deploy 했는데 반영되는데 시간이 꽤 걸리나보다. 계속 깨져보이길래 제대로 deploy 안된줄알고 구글링중이었는데, 몇분 지나니까 잘 반영돼 있음.</p>
-]]></content>
+        <div class="nav-next">
+          <a href="/2017/09/26/til/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
       
-        
-        <tags>
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">tuwhit</h1>
+        <div class="custom-widget-content">
+          
+          아주 보통의 존재
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
             
-            <tag> blog </tag>
+              <a href="https://github.com/tuwhit" class="icon icon-github" target="_blank">github</a>
             
-            <tag> github </tag>
+              <a href="mailto:tuwhit1202@gmail.com" class="icon icon-mail" target="_blank">mail</a>
             
-            <tag> hexo </tag>
-            
-        </tags>
-        
-    </entry>
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <div id="site_search">
+            <p>
+              <input type="text" placeholder="검색" id="local-search-input" name="q" results="0" class="form-control"/>
+            </p>
+              <div id="local-search-result">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/search.js"></script>   
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>개발새발 블로그 &copy; 2017</span>
     
-  
-  
-</search>
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>
