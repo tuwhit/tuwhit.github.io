@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Hyunkyung Ahn">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="AWS 도커 컨테이너 배포 자동화 실습"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="개발새발 블로그"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>AWS 도커 컨테이너 배포 자동화 실습 - 개발새발 블로그</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="개발새발 블로그" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  rss
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            AWS 도커 컨테이너 배포 자동화 실습
+            
+          </h1>
+          <p class="posted-on">
+          2017-10-27
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/deploy/" rel="tag">
+                  deploy
+                </a>
+              
+                <a href="/tags/AWS/" rel="tag">
+                  AWS
+                </a>
+              
+                <a href="/tags/CodePipeline/" rel="tag">
+                  CodePipeline
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <hr>
+<p>3일전 Gaming on AWS에 참석해서 ‘도커 컨테이너 배포 자동화 실습’을 진행했다. 회사에서도 도커 컨테이너를 이용해서 배포를 하고있어서(수동이지만) 적용해볼 수 있을것 같다.</p>
+<p>당일에는 실습자료를 보고 따라하기 급급했어서 다시 한번 정리해봤다.</p>
+<p><img src="/images/architecture.png" alt="실습 아키텍쳐"></p>
+<blockquote>
+<p>CodePipeline으로 배포 프로세스를 구성하고 S3에 저장된 소스코드를 CodeBuild를 통해 컴파일 및 컨테이너 이미지 생성한다. 그리고 CloudFormation을 이용해 ECS에 배포한다.</p>
+</blockquote>
+<ol>
+<li>CodePipeline 생성</li>
+</ol>
+<ul>
+<li>Source provider는 소스코드가 저장된 S3 버킷으로 설정하고 CodeBuild를 build provider로 선택</li>
+<li>코드가 build되어 생성된 컨테이너 이미지는 ECR repository에 저장</li>
+<li>환경 설정 파일도 S3에 저장하고 CodePipeline 에서 해당 파일을 사용하는 Source 액션 추가</li>
+<li>Dockerize 하는 액션 추가 (여기까지가 Build 스테이지)</li>
+<li>Deploy 스테이지 추가</li>
+<li>CloudFormation으로 환경설정 파일을 참조하여 deploy</li>
+</ul>
+<p>설정 완료 후 S3에 환경 설정 파일, 어플리케이션을 업로드하면 CodePipeline 에서 변경사항을 감지하여 배포작업을 수행한다. 왕신기. 추가적으로 Lambda를 이용해서 Blue/Green 배포도 가능하다. 현재 리얼 환경이 아닌 곳으로 배포하고 수동 승인과정을 거치면 환경을 Swap 하도록 할 수 있다.</p>
+<p>간단히 정리해놔서 그렇지 실제로 콘솔에서 설정해줘야 하는 것들이 굉장히 많았다. 그 하나하나를 이해하기는 좀 어려워서 따로 공부가 필요할 것 같다. 그리고 실습에서 제공된 환경설정파일들도 실제 서비스 환경설정파일들이랑 같이 보면 좋을듯.</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tuwhit.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/10/13/server-sabjil/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">tuwhit</h1>
+        <div class="custom-widget-content">
+          
+          아주 보통의 존재
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/tuwhit" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:tuwhit1202@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <div id="site_search">
+            <p>
+              <input type="text" placeholder="검색" id="local-search-input" name="q" results="0" class="form-control"/>
+            </p>
+              <div id="local-search-result">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/search.js"></script>   
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>개발새발 블로그 &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>
