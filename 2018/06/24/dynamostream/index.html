@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="S3에 있는 csv 파일을 AuroraDB로 import 시키기"/>
+      <meta property="og:title" content="DynamoDB Stream"/>
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>S3에 있는 csv 파일을 AuroraDB로 import 시키기 - 개발새발 블로그</title>
+  <title>DynamoDB Stream - 개발새발 블로그</title>
 
 
   <link rel="shortcut icon" href="/images/favicon.ico">
@@ -121,11 +121,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            S3에 있는 csv 파일을 AuroraDB로 import 시키기
+            DynamoDB Stream
             
           </h1>
           <p class="posted-on">
-          2017-11-16
+          2018-06-24
           </p>
           <div class="tags-links">
             
@@ -134,20 +134,12 @@
                   AWS
                 </a>
               
-                <a href="/tags/AuroraDB/" rel="tag">
-                  AuroraDB
+                <a href="/tags/DynamoDB/" rel="tag">
+                  DynamoDB
                 </a>
               
-                <a href="/tags/S3/" rel="tag">
-                  S3
-                </a>
-              
-                <a href="/tags/Database/" rel="tag">
-                  Database
-                </a>
-              
-                <a href="/tags/RDS/" rel="tag">
-                  RDS
+                <a href="/tags/Stream/" rel="tag">
+                  Stream
                 </a>
               
             
@@ -156,16 +148,10 @@
         <!-- Post Main Content -->
         <div class="entry-content">
           <hr>
-<p>데이터 분석 관련 프로젝트를 진행중이라 간만에 포스팅을 한다. 아마 당분간 프로젝트를 진행하며 겪었던 삽질기를 계속 포스팅하지 않을까 싶음… 처음 해보는것들 투성이라 팀원들이 모두 프로야근러가 되었다. 흑흑ㅠㅠ 오늘은 문서가 잘 정리돼있어서 꽤 쉽게 클리어했던 S3에 있는 csv 파일을 AuroraDB에 import 시키는 방법을 정리해본다.</p>
-<p>AuroraDB instance를 생성하고 IAM role(case는 물론 RDS로 선택)을 만들어준다. 생성후 permission 탭에서 Attach policy를 클릭하여 S3에 Access할수 있도록 <strong>AmazonS3FullAccess</strong> 를 추가해준다.</p>
-<p>그리고 다시 RDS로 돌아가 Parameter group을 생성해준다. 여기서 Type은  <strong>DB Cluster Parameter Group</strong> 으로 설정한다. 생성후에 <strong>aurora_load_from_s3_role</strong> 의 value 값을 위에서 만든 IAM role ARN로 입력해준다.</p>
-<p>cluster 메뉴에서 해당 cluster 수정 페이지로 이동하여 DB Cluster Parameter Group을 위에서 생성해준 걸로 설정해준다. 다음 페이지로 넘어가서 Apply Immediately 선택후 완료. 다시 cluster 메뉴로 돌아와 해당 cluster 선택 후 Manage IAM roles 페이지로 이동하여 위에서 만들어준 IAM role을 추가해준다.</p>
-<p>여기까지가 데이터를 로드하기위한 준비 끝.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -h [DB Endpoint] -P [port] -u [user name] -p</div></pre></td></tr></table></figure>
-<p>이후 패스워드를 입력하면 해당 AuroraDB로 접속하게된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">load data from s3 &apos;s3-[region]://[bucket name]/[file name]&apos;</div><div class="line">into table [table name]</div><div class="line">fields terminated by &apos;,&apos;;</div></pre></td></tr></table></figure>
-<p>이렇게 하면 s3에 있는 csv 파일의 데이터를 지정한 테이블로 로드하게 된다. 1억 row 짜리 데이터 올리는데 한시간가량 걸렸던것 같음.</p>
-<p>위 명령어만으로 로드하면 필드명으로 구분이 안되고 파일에 입력된 순서대로 DB에 저장되니 유의하자. 로드할때 여러가지 옵션이 있는데 <a href="http://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/Aurora.LoadFromS3.html" target="_blank" rel="external">여기</a>에서 확인할 수 있다.</p>
+<p>DynamoDB 스트림은 DynamoDB 테이블 항목의 변경 정보에 대한 흐름을 나타내준다.<br>스트림 이벤트는 INSERT, MODIFY, DELETE 세가지로 나눠진다.</p>
+<p><img src="/images/manage_stream.png" alt="Manage Stream"><br>DDB 테이블의 overview 탭에 보면 Stream Detail 항목이 있는데 여기서 뷰 타입을 설정 가능하다.<br>이벤트가 발생한 아이템의 키만 보여주던지, 새 이미지만 보여주던지, 기존 이미지만 보여주던지, 둘다 보여주던지 총 네가지 타입이 있다.<br>물론 스트림을 비활성화하는것도 가능하다.</p>
+<p><img src="/images/add_trigger.png" alt="Trigger 추가"><br>Trigger 탭에서 스트림에 대한 Lambda 트리거를 쉽게 추가할 수 있다.<br>새 Lambda function을 추가할수도 있고, 존재하는 function을 추가할 수도 있다.<br>function을 추가하면서 batch size도 설정 가능한데 나중에 설정해둔 사이즈를 확인할 수 있는 곳을 못찾아서 한참 헤맸다;<br>해당 Lambda function에 들어가서 Designer 항목에서 DynamoDB를 선택하면 아래에 정보를 띄워준다.<br>이걸 몇달 후에나 알았음 -.-</p>
+<p>수백만건의 데이터를 DynamoDB에 때려넣다가 에러는 안나는데 결과 데이터의 오차율이 너무 커서 꽤 오래 고생을 했는데 원인은 단순했다.<br>DynamoDB Stream은 최대 24시간동안만 저장한다는 사실…<br>트리거 function이 단순한 로직이 아니라면 스트림이 쌓여있다가 트리거가 돌기전에 휘발될수 있으니 주의하자 ㅠㅠ </p>
 
         </div>
       </article>
@@ -197,13 +183,9 @@ s.setAttribute('data-timestamp', +new Date());
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2017/11/19/import-to-dynamodb/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Newer Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2017/10/27/code-deploy/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2018/02/15/aurora-to-es/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
