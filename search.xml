@@ -69,11 +69,11 @@
         
         <tags>
             
-            <tag> pivotal tracker </tag>
+            <tag> PivotalTracker </tag>
             
-            <tag> pivotal labs </tag>
+            <tag> PivotalLabs </tag>
             
-            <tag> 유저 중심 스토리 </tag>
+            <tag> 유저중심스토리 </tag>
             
         </tags>
         
@@ -111,9 +111,9 @@
             
             <tag> Facebook </tag>
             
-            <tag> lead ads </tag>
+            <tag> LeadAds </tag>
             
-            <tag> API Gateway </tag>
+            <tag> APIGateway </tag>
             
         </tags>
         
@@ -187,11 +187,11 @@
             
             <tag> AWS </tag>
             
-            <tag> Kinesis Firehose </tag>
-            
             <tag> Elasticsearch </tag>
             
             <tag> AuroraDB </tag>
+            
+            <tag> KinesisFirehose </tag>
             
         </tags>
         
@@ -237,9 +237,9 @@
             
             <tag> AWS </tag>
             
-            <tag> Kinesis Firehose </tag>
-            
             <tag> AuroraDB </tag>
+            
+            <tag> KinesisFirehose </tag>
             
         </tags>
         
@@ -275,11 +275,11 @@
             
             <tag> DynamoDB </tag>
             
-            <tag> Data Pipeline </tag>
-            
             <tag> S3 </tag>
             
             <tag> AWS </tag>
+            
+            <tag> DataPipeline </tag>
             
         </tags>
         
