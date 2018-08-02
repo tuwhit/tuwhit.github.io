@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Hyunkyung Ahn">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Principles of Effective Story Writing - The Pivotal Labs Way"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="개발새발 블로그"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Principles of Effective Story Writing - The Pivotal Labs Way - 개발새발 블로그</title>
+
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/owl.png" alt="개발새발 블로그" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  rss
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Principles of Effective Story Writing - The Pivotal Labs Way
+            
+          </h1>
+          <p class="posted-on">
+          2018-08-01
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/pivotal tracker/" rel="tag">
+                  pivotal tracker
+                </a>
+              
+                <a href="/tags/pivotal labs/" rel="tag">
+                  pivotal labs
+                </a>
+              
+                <a href="/tags/유저 중심 스토리/" rel="tag">
+                  유저 중심 스토리
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <hr>
+<p><a href="https://www.pivotaltracker.com/blog/principles-of-effective-story-writing-the-pivotal-labs-way/" target="_blank" rel="external">pivotal labs에서 pivotal tracker를 이용하여 효과적으로 스토리를 작성하는 방법</a>에 대한 아티클을 대충 번역해서 정리해봄.</p>
+<p><img src="/images/pivotal.png" alt=""></p>
+<h3 id="스토리란"><a href="#스토리란" class="headerlink" title="스토리란?"></a>스토리란?</h3><p>대화와 그 문맥에 대한 placeholder<br>작은 디테일들을 포함할 필요가 없으나, 이야기한 내용을 상기시켜야 하며 모든것을 high level에서 포함해야함<br>how 가 아닌 what 이 진술되어야 함<br>기술적으로 규범화된것이 아니므로, 엔지니어링 팀이 문제의 기능을 구현할 수있는 정확한 정보를 지정할 필요가 없음<br>기능의 이유와 그 기능이 무엇인지 정확하게 설명해야함<br>모든 스토리는 INVEST 모델을 따라야함</p>
+<h4 id="INVEST-model"><a href="#INVEST-model" class="headerlink" title="INVEST model"></a>INVEST model</h4><p>Independent : 의존되지않고 릴리즈 할수있어야함<br>Negotiable : 토론할 준비가 돼있고 팀 인풋에 따라 조정될수있음<br>Valuable : end user 에게 가치를 제공함<br>Estimatable : 개발팀은 스토리의 복잡성을 추정할 수 있음<br>Small : 실제 가치를 제공하는 선에서 가능한 작아야함<br>testable : 테스트의 승인 기준을 포함</p>
+<h3 id="다양한-스토리-타입들"><a href="#다양한-스토리-타입들" class="headerlink" title="다양한 스토리 타입들"></a>다양한 스토리 타입들</h3><h4 id="기능-사용자-스토리-feature"><a href="#기능-사용자-스토리-feature" class="headerlink" title="기능 / 사용자 스토리 (feature)"></a>기능 / 사용자 스토리 (feature)</h4><p>기능 스토리는 유저에게 가치를 제공하는 제품에 추가될수 있는 가장 작은 추가적 기능의 누구에게, 무엇을, 왜를 설명할수 있도록 디자인됨<br>기능 스토리는 개발팀에 의해 포인트가 매겨지고 기능을 완료하는데 걸리는 시간이 아닌 복잡도로 평가됨<br>유저의 관점에서 작성되고 개발팀의 가벼운 요구사항 문서로서의 역할을 함<br>INVEST 모델에 따라 이들은 독립적이어야하며 사용자에게 확실한 가치를 제공해야함</p>
+<h5 id="feature에-포함되어야-하는-것들"><a href="#feature에-포함되어야-하는-것들" class="headerlink" title="feature에 포함되어야 하는 것들"></a>feature에 포함되어야 하는 것들</h5><ul>
+<li>title<ul>
+<li>제목은 짧아야하며 설명가능하고 특정 사용자나 개인을 포함해야함</li>
+<li>예를들어 사용자/개인은 단순히 ‘사용자’가 아닌 특정 타입의 사용자거나 개인이름(예: 토마스)이어야 함</li>
+<li>사람이 아니라 시스템이 사용자인 경우에도 동일하게 작용함(예: 구매 API)</li>
+</ul>
+</li>
+<li>business case<ul>
+<li>누가, 왜, 무엇을 원하는지를 서술</li>
+<li>팀의 모든 구성원들이 해당 기능이 추가되어야하는 이유를 이해할 수 있어야함</li>
+<li>이유를 생각할수 없다면 그 기능이 포함되어야 하는지 다시 판단해봐야함</li>
+<li>비지니스 케이스를 통해 팀원들은 제공된것보다 나은 사용자 경험이 있는지 생각해볼수 있음</li>
+</ul>
+</li>
+<li>acceptance criteria (수락기준?)<ul>
+<li>스토리가 완료되었는지 확인하기 위해 따라야할 사항을 정의함</li>
+<li>해당 스토리를 작업(?)한 개발자는 그것을 제공하기전에 수락 기준을 따라야함</li>
+<li>syntax<ul>
+<li>GIVEN [필요한 context] WHEN [action] THEN [reaction]</li>
+<li>수용 기준에 여러번의 ‘and’를 쓰는걸 발견한다면 스토리를 더 쪼개야 함</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>notes<ul>
+<li>스토리에 필요한 추가적인 정보를 포함함</li>
+<li>ex: 디자인노트, 개발자 노트…</li>
+</ul>
+</li>
+<li>resources<ul>
+<li>기능스토리를 전달하는데 도움을 주는 것들</li>
+<li>ex: 목업, 와이어프레임, 유저플로우, 링크 등</li>
+</ul>
+</li>
+<li>labels<ul>
+<li>스토리들을 그룹핑하는데 효과적임</li>
+<li>ex: Epics, 빌드 넘버, 사용자…</li>
+</ul>
+</li>
+</ul>
+<h4 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h4><p>버그는 이미 수락된 feature의 결함<br>버그를 사용해서 새 기능을 자세히 설명하면 안됨(ex: 가격은 음수가 아니어야함, 로그인 버튼이 작동하지않음)<br>버그들은 이미 전달된 기능과 직접적으로 연관돼있으며 새로운 유저 가치를 제공하지 않으므로 포인트가 없음. 왜냐하면 추정하기가 불가능하고 해결하는데 30초가 걸릴수도 30일이 걸릴수도 있기때문</p>
+<h5 id="bug에-포함되어야-하는-것들"><a href="#bug에-포함되어야-하는-것들" class="headerlink" title="bug에 포함되어야 하는 것들"></a>bug에 포함되어야 하는 것들</h5><ul>
+<li>title : 짧고 설명가능해야함</li>
+<li>description : 현재 무슨일이 일어나고 있는지, 무슨 일이 일어나야 하는가를 서술</li>
+<li>instructions : 버그를 재현하는 단계를 요약하셈</li>
+<li>resources : 스크린샷이나 버그를 설명하는데 도움을 주는 것들</li>
+</ul>
+<h4 id="chore"><a href="#chore" class="headerlink" title="chore"></a>chore</h4><p>chore는 필요하지만 사용자에게 직접적이고 분명한 가치를 제공하지는 않음 (ex: 테스트환경을 위해 새 도메인 및 와일드카드 SSL 인증서를 설치, 시스템 문제해결을 위한 툴 평가)<br>chore는 유저 가치에 직접적으로 기여하지 않으므로 측정할수 없음<br>chore가 유저가치를 제공하는것처럼 느껴지면 featrue stroy에 통합되어야함<br>예를들어 분석서비스를 사용하는 경우 서비스 설치에 관한 추가적인 복잡성은 chore로 분리되지 말고 feature story에 고려되어야함</p>
+<h5 id="chore-스토리에-포함되어야-하는-것들"><a href="#chore-스토리에-포함되어야-하는-것들" class="headerlink" title="chore 스토리에 포함되어야 하는 것들"></a>chore 스토리에 포함되어야 하는 것들</h5><ul>
+<li>title : 짧고 설명가능해야함</li>
+<li>description : 왜 필요한지, 이것이 팀을 더 빠르게하거나 처리되지않으면 코드베이스에서 문제를 일으킬수 있는 의존성이 있는가를 서술</li>
+<li>resources : 작업 수행을 돕는 지침, 추가 컨텍스트등</li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tuwhit.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2018/07/30/facebook-webhook/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">tuwhit</h1>
+        <div class="custom-widget-content">
+          
+          개발새발 블로그
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/tuwhit" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:tuwhit1202@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+              <a href="https://www.instagram.com/tuwhit/" class="icon icon-instagram" target="_blank">instagram</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <div id="site_search">
+            <p>
+              <input type="text" placeholder="검색" id="local-search-input" name="q" results="0" class="form-control"/>
+            </p>
+              <div id="local-search-result">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/search.js"></script>   
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>개발새발 블로그 &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>

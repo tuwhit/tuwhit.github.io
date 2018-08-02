@@ -4,10 +4,10 @@
     
     <entry>
       <title><![CDATA[Principles of Effective Story Writing - The Pivotal Labs Way]]></title>
-      <url>/2018/08/02/userstory/</url>
+      <url>/2018/08/01/userstory/</url>
       <content type="html"><![CDATA[<hr>
 <p><a href="https://www.pivotaltracker.com/blog/principles-of-effective-story-writing-the-pivotal-labs-way/" target="_blank" rel="external">pivotal labs에서 pivotal tracker를 이용하여 효과적으로 스토리를 작성하는 방법</a>에 대한 아티클을 대충 번역해서 정리해봄.</p>
-<p><img src="/images/pivotal.png" alt="Trigger 추가"></p>
+<p><img src="/images/pivotal.png" alt=""></p>
 <h3 id="스토리란"><a href="#스토리란" class="headerlink" title="스토리란?"></a>스토리란?</h3><p>대화와 그 문맥에 대한 placeholder<br>작은 디테일들을 포함할 필요가 없으나, 이야기한 내용을 상기시켜야 하며 모든것을 high level에서 포함해야함<br>how 가 아닌 what 이 진술되어야 함<br>기술적으로 규범화된것이 아니므로, 엔지니어링 팀이 문제의 기능을 구현할 수있는 정확한 정보를 지정할 필요가 없음<br>기능의 이유와 그 기능이 무엇인지 정확하게 설명해야함<br>모든 스토리는 INVEST 모델을 따라야함</p>
 <h4 id="INVEST-model"><a href="#INVEST-model" class="headerlink" title="INVEST model"></a>INVEST model</h4><p>Independent : 의존되지않고 릴리즈 할수있어야함<br>Negotiable : 토론할 준비가 돼있고 팀 인풋에 따라 조정될수있음<br>Valuable : end user 에게 가치를 제공함<br>Estimatable : 개발팀은 스토리의 복잡성을 추정할 수 있음<br>Small : 실제 가치를 제공하는 선에서 가능한 작아야함<br>testable : 테스트의 승인 기준을 포함</p>
 <h3 id="다양한-스토리-타입들"><a href="#다양한-스토리-타입들" class="headerlink" title="다양한 스토리 타입들"></a>다양한 스토리 타입들</h3><h4 id="기능-사용자-스토리-feature"><a href="#기능-사용자-스토리-feature" class="headerlink" title="기능 / 사용자 스토리 (feature)"></a>기능 / 사용자 스토리 (feature)</h4><p>기능 스토리는 유저에게 가치를 제공하는 제품에 추가될수 있는 가장 작은 추가적 기능의 누구에게, 무엇을, 왜를 설명할수 있도록 디자인됨<br>기능 스토리는 개발팀에 의해 포인트가 매겨지고 기능을 완료하는데 걸리는 시간이 아닌 복잡도로 평가됨<br>유저의 관점에서 작성되고 개발팀의 가벼운 요구사항 문서로서의 역할을 함<br>INVEST 모델에 따라 이들은 독립적이어야하며 사용자에게 확실한 가치를 제공해야함</p>
@@ -80,6 +80,46 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Facebook Webhooks API로 lead ads와 CRM 통합]]></title>
+      <url>/2018/07/30/facebook-webhook/</url>
+      <content type="html"><![CDATA[<hr>
+<p>이 페이지는 <a href="https://developers.facebook.com/docs/marketing-api/guides/lead-ads/quickstart/webhooks-integration" target="_blank" rel="external">이 문서</a>를 따라 테스트해보면서 추가적인 내용을 적어둔것이니 문서를 먼저 읽는것이 좋음!</p>
+<h4 id="미리-설정해두면-좋은것들"><a href="#미리-설정해두면-좋은것들" class="headerlink" title="미리 설정해두면 좋은것들"></a>미리 설정해두면 좋은것들</h4><ul>
+<li>App 설정</li>
+<li>Page 설정 및 Lead Ad 설정</li>
+<li>App, Page 관리자 권한 얻기</li>
+</ul>
+<hr>
+<p><img src="/images/webhook.png" alt=""></p>
+<p>테스트를 하면서 알았는데 페이스북 페이지에서 바로 webhook 설정을 할수 있는게 아니었다;<br>Lead ad는 페이스북 페이지에서, webhook은 페이스북 앱에서 각각 설정해줘야하고, 페이스북 페이지를 앱이 구독할수 있도록 승인이 필요하다.<br>즉 Lead ad의 실시간 업데이트가 앱으로 전달되고, 앱에 설정된 webhook을 통해 Lead ad로 받은 고객정보를 처리할수 있게된다.</p>
+<p>문서를 보면 웹서버에 php 파일을 생성하라고 나와있는데, 대신 AWS Lambda와 API Gateway를 사용해서 테스트했다. 로컬서버로 테스트해보려다 잘안돼서 빠른 포기 -.-;;<br>API Gateway에서 메소드 생성시 GET, POST 둘다 생성해줘야한다. (아마 페이지 구독 설정시에는 GET, 실제 lead ad payload 전송시엔 POST 로 보내는듯)</p>
+<p>각 메소드의 Integration Request에서 Use lambda proxy integration에 체크하면 Lambda 함수에 대한 입력을 요청 헤더, 경로 변수, 쿼리 문자열 파라미터 및 본문의 조합으로 표현할 수 있다.<br>해당 API로 들어오는 리퀘스트의 내용을 그대로 Lambda 함수로 전달하고 이것을 event로 쉽게 핸들링할수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 구독설정시 lambda 함수 예제</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></div><div class="line">    challenge = event[<span class="string">'queryStringParameters'</span>][<span class="string">'hub.challenge'</span>]</div><div class="line">    verify_token = event[<span class="string">'queryStringParameters'</span>][<span class="string">'hub.verify_token'</span>]</div><div class="line"></div><div class="line">    <span class="comment"># if verify_token == 'test_token':</span></div><div class="line">    <span class="comment">#     print(challenge)</span></div><div class="line"></div><div class="line">    response = &#123;</div><div class="line">        <span class="string">"isBase64Encoded"</span>: <span class="keyword">False</span>,</div><div class="line">        <span class="string">"statusCode"</span>: <span class="number">200</span>,</div><div class="line">        <span class="string">"headers"</span>: &#123;&#125;,</div><div class="line">        <span class="string">"body"</span>: challenge</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> response</div></pre></td></tr></table></figure>
+<p>대신 response 형식도 아래와 같이 맞춰줘야한다.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"isBase64Encoded"</span>: <span class="literal">true</span>|<span class="literal">false</span>,</div><div class="line">    <span class="attr">"statusCode"</span>: httpStatusCode,</div><div class="line">    "headers": &#123; "headerName": "headerValue", ... &#125;,</div><div class="line">    "body": "..."</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>모든 설정을 완료한 후에 <a href="https://developers.facebook.com/tools/lead-ads-testing" target="_blank" rel="external">https://developers.facebook.com/tools/lead-ads-testing</a> 에서 테스트를 해보면 제대로 동작해보는지 확인할수 있다.<br>앱 관리 페이지에서 webhook - leadgen Test 에서도 테스트 가능하다.</p>
+<p>body에 유저가 입력한 form data가 같이 넘어오는줄 알았는데 그게 아니었음… 실시간 업데이트에 대한 데이터가 아래처럼 넘어온다. ㅠㅠ<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">array(</div><div class="line">  "object" =&gt; "page",</div><div class="line">  "entry" =&gt; array(</div><div class="line">    "0" =&gt; array(</div><div class="line">      "id" =&gt; 153125381133,</div><div class="line">      "time" =&gt; 1438292065,</div><div class="line">      "changes" =&gt; array(</div><div class="line">        "0" =&gt; array(</div><div class="line">          "field" =&gt; "leadgen",</div><div class="line">          "value" =&gt; array(</div><div class="line">            "leadgen_id" =&gt; 123123123123,</div><div class="line">            "page_id" =&gt; 123123123,</div><div class="line">            "form_id" =&gt; 12312312312,</div><div class="line">            "adgroup_id" =&gt; 12312312312,</div><div class="line">            "ad_id" =&gt; 12312312312,</div><div class="line">            "created_time" =&gt; 1440120384</div><div class="line">          )</div><div class="line">        ),</div><div class="line">        "1" =&gt; array(</div><div class="line">          "field" =&gt; "leadgen",</div><div class="line">          "value" =&gt; array(</div><div class="line">            "leadgen_id" =&gt; 123123123124,</div><div class="line">            "page_id" =&gt; 123123123,</div><div class="line">            "form_id" =&gt; 12312312312,</div><div class="line">            "adgroup_id" =&gt; 12312312312,</div><div class="line">            "ad_id" =&gt; 12312312312,</div><div class="line">            "created_time" =&gt; 1440120384</div><div class="line">          )</div><div class="line">        )</div><div class="line">      )</div><div class="line">    )</div><div class="line">  )</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>그래서 넘어온 id를 가지고 Facebook Ads API를 이용해서 데이터를 받아와야한다 ㅠㅠ 페이스북놈들…<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python Business SDK</span></div><div class="line"><span class="keyword">from</span> facebookads.adobjects.lead <span class="keyword">import</span> Lead</div><div class="line"><span class="keyword">from</span> facebookads.api <span class="keyword">import</span> FacebookAdsApi</div><div class="line"></div><div class="line">access_token = <span class="string">'&lt;ACCESS_TOKEN&gt;'</span></div><div class="line">app_secret = <span class="string">'&lt;APP_SECRET&gt;'</span></div><div class="line">app_id = <span class="string">'&lt;APP_ID&gt;'</span></div><div class="line">id = <span class="string">'&lt;ID&gt;'</span></div><div class="line">FacebookAdsApi.init(access_token=access_token)</div><div class="line"></div><div class="line">fields = [</div><div class="line">]</div><div class="line">params = &#123;</div><div class="line">&#125;</div><div class="line"><span class="keyword">print</span> Lead(id).get(</div><div class="line">  fields=fields,</div><div class="line">  params=params,</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># response</div><div class="line">&#123;</div><div class="line">  <span class="attr">"created_time"</span>: <span class="string">"2015-02-28T08:49:14+0000"</span>,</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"&lt;LEAD_ID&gt;"</span>,</div><div class="line">  <span class="attr">"ad_id"</span>: <span class="string">"&lt;AD_ID&gt;"</span>,</div><div class="line">  <span class="attr">"form_id"</span>: <span class="string">"&lt;FORM_ID&gt;"</span>,</div><div class="line">  <span class="attr">"field_data"</span>: [&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"car_make"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"Honda"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"full_name"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"Joe Example"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"email"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"joe@example.com"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"selected_dealer"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"99213450"</span></div><div class="line">    ]</div><div class="line">  &#125;],</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Lambda </tag>
+            
+            <tag> AWS </tag>
+            
+            <tag> Facebook </tag>
+            
+            <tag> lead ads </tag>
+            
+            <tag> API Gateway </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[DynamoDB Stream]]></title>
       <url>/2018/06/24/dynamostream/</url>
       <content type="html"><![CDATA[<hr>
@@ -92,9 +132,9 @@
         
         <tags>
             
-            <tag> AWS </tag>
-            
             <tag> DynamoDB </tag>
+            
+            <tag> AWS </tag>
             
             <tag> Stream </tag>
             
@@ -143,9 +183,9 @@
         
         <tags>
             
-            <tag> AWS </tag>
-            
             <tag> Lambda </tag>
+            
+            <tag> AWS </tag>
             
             <tag> Kinesis Firehose </tag>
             
@@ -191,11 +231,11 @@
         
         <tags>
             
-            <tag> AWS </tag>
-            
             <tag> Lambda </tag>
             
             <tag> S3 </tag>
+            
+            <tag> AWS </tag>
             
             <tag> Kinesis Firehose </tag>
             
@@ -233,13 +273,13 @@
         
         <tags>
             
-            <tag> AWS </tag>
-            
             <tag> DynamoDB </tag>
             
             <tag> Data Pipeline </tag>
             
             <tag> S3 </tag>
+            
+            <tag> AWS </tag>
             
         </tags>
         
@@ -264,9 +304,9 @@
         
         <tags>
             
-            <tag> AWS </tag>
-            
             <tag> S3 </tag>
+            
+            <tag> AWS </tag>
             
             <tag> AuroraDB </tag>
             
@@ -307,9 +347,9 @@
         
         <tags>
             
-            <tag> deploy </tag>
-            
             <tag> AWS </tag>
+            
+            <tag> deploy </tag>
             
             <tag> CodePipeline </tag>
             

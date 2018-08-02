@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Hyunkyung Ahn">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Facebook Webhooks API로 lead ads와 CRM 통합"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="개발새발 블로그"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Facebook Webhooks API로 lead ads와 CRM 통합 - 개발새발 블로그</title>
+
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/owl.png" alt="개발새발 블로그" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  rss
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Facebook Webhooks API로 lead ads와 CRM 통합
+            
+          </h1>
+          <p class="posted-on">
+          2018-07-30
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Lambda/" rel="tag">
+                  Lambda
+                </a>
+              
+                <a href="/tags/AWS/" rel="tag">
+                  AWS
+                </a>
+              
+                <a href="/tags/Facebook/" rel="tag">
+                  Facebook
+                </a>
+              
+                <a href="/tags/lead ads/" rel="tag">
+                  lead ads
+                </a>
+              
+                <a href="/tags/API Gateway/" rel="tag">
+                  API Gateway
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <hr>
+<p>이 페이지는 <a href="https://developers.facebook.com/docs/marketing-api/guides/lead-ads/quickstart/webhooks-integration" target="_blank" rel="external">이 문서</a>를 따라 테스트해보면서 추가적인 내용을 적어둔것이니 문서를 먼저 읽는것이 좋음!</p>
+<h4 id="미리-설정해두면-좋은것들"><a href="#미리-설정해두면-좋은것들" class="headerlink" title="미리 설정해두면 좋은것들"></a>미리 설정해두면 좋은것들</h4><ul>
+<li>App 설정</li>
+<li>Page 설정 및 Lead Ad 설정</li>
+<li>App, Page 관리자 권한 얻기</li>
+</ul>
+<hr>
+<p><img src="/images/webhook.png" alt=""></p>
+<p>테스트를 하면서 알았는데 페이스북 페이지에서 바로 webhook 설정을 할수 있는게 아니었다;<br>Lead ad는 페이스북 페이지에서, webhook은 페이스북 앱에서 각각 설정해줘야하고, 페이스북 페이지를 앱이 구독할수 있도록 승인이 필요하다.<br>즉 Lead ad의 실시간 업데이트가 앱으로 전달되고, 앱에 설정된 webhook을 통해 Lead ad로 받은 고객정보를 처리할수 있게된다.</p>
+<p>문서를 보면 웹서버에 php 파일을 생성하라고 나와있는데, 대신 AWS Lambda와 API Gateway를 사용해서 테스트했다. 로컬서버로 테스트해보려다 잘안돼서 빠른 포기 -.-;;<br>API Gateway에서 메소드 생성시 GET, POST 둘다 생성해줘야한다. (아마 페이지 구독 설정시에는 GET, 실제 lead ad payload 전송시엔 POST 로 보내는듯)</p>
+<p>각 메소드의 Integration Request에서 Use lambda proxy integration에 체크하면 Lambda 함수에 대한 입력을 요청 헤더, 경로 변수, 쿼리 문자열 파라미터 및 본문의 조합으로 표현할 수 있다.<br>해당 API로 들어오는 리퀘스트의 내용을 그대로 Lambda 함수로 전달하고 이것을 event로 쉽게 핸들링할수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 구독설정시 lambda 함수 예제</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></div><div class="line">    challenge = event[<span class="string">'queryStringParameters'</span>][<span class="string">'hub.challenge'</span>]</div><div class="line">    verify_token = event[<span class="string">'queryStringParameters'</span>][<span class="string">'hub.verify_token'</span>]</div><div class="line"></div><div class="line">    <span class="comment"># if verify_token == 'test_token':</span></div><div class="line">    <span class="comment">#     print(challenge)</span></div><div class="line"></div><div class="line">    response = &#123;</div><div class="line">        <span class="string">"isBase64Encoded"</span>: <span class="keyword">False</span>,</div><div class="line">        <span class="string">"statusCode"</span>: <span class="number">200</span>,</div><div class="line">        <span class="string">"headers"</span>: &#123;&#125;,</div><div class="line">        <span class="string">"body"</span>: challenge</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> response</div></pre></td></tr></table></figure>
+<p>대신 response 형식도 아래와 같이 맞춰줘야한다.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"isBase64Encoded"</span>: <span class="literal">true</span>|<span class="literal">false</span>,</div><div class="line">    <span class="attr">"statusCode"</span>: httpStatusCode,</div><div class="line">    "headers": &#123; "headerName": "headerValue", ... &#125;,</div><div class="line">    "body": "..."</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>모든 설정을 완료한 후에 <a href="https://developers.facebook.com/tools/lead-ads-testing" target="_blank" rel="external">https://developers.facebook.com/tools/lead-ads-testing</a> 에서 테스트를 해보면 제대로 동작해보는지 확인할수 있다.<br>앱 관리 페이지에서 webhook - leadgen Test 에서도 테스트 가능하다.</p>
+<p>body에 유저가 입력한 form data가 같이 넘어오는줄 알았는데 그게 아니었음… 실시간 업데이트에 대한 데이터가 아래처럼 넘어온다. ㅠㅠ<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">array(</div><div class="line">  "object" =&gt; "page",</div><div class="line">  "entry" =&gt; array(</div><div class="line">    "0" =&gt; array(</div><div class="line">      "id" =&gt; 153125381133,</div><div class="line">      "time" =&gt; 1438292065,</div><div class="line">      "changes" =&gt; array(</div><div class="line">        "0" =&gt; array(</div><div class="line">          "field" =&gt; "leadgen",</div><div class="line">          "value" =&gt; array(</div><div class="line">            "leadgen_id" =&gt; 123123123123,</div><div class="line">            "page_id" =&gt; 123123123,</div><div class="line">            "form_id" =&gt; 12312312312,</div><div class="line">            "adgroup_id" =&gt; 12312312312,</div><div class="line">            "ad_id" =&gt; 12312312312,</div><div class="line">            "created_time" =&gt; 1440120384</div><div class="line">          )</div><div class="line">        ),</div><div class="line">        "1" =&gt; array(</div><div class="line">          "field" =&gt; "leadgen",</div><div class="line">          "value" =&gt; array(</div><div class="line">            "leadgen_id" =&gt; 123123123124,</div><div class="line">            "page_id" =&gt; 123123123,</div><div class="line">            "form_id" =&gt; 12312312312,</div><div class="line">            "adgroup_id" =&gt; 12312312312,</div><div class="line">            "ad_id" =&gt; 12312312312,</div><div class="line">            "created_time" =&gt; 1440120384</div><div class="line">          )</div><div class="line">        )</div><div class="line">      )</div><div class="line">    )</div><div class="line">  )</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>그래서 넘어온 id를 가지고 Facebook Ads API를 이용해서 데이터를 받아와야한다 ㅠㅠ 페이스북놈들…<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python Business SDK</span></div><div class="line"><span class="keyword">from</span> facebookads.adobjects.lead <span class="keyword">import</span> Lead</div><div class="line"><span class="keyword">from</span> facebookads.api <span class="keyword">import</span> FacebookAdsApi</div><div class="line"></div><div class="line">access_token = <span class="string">'&lt;ACCESS_TOKEN&gt;'</span></div><div class="line">app_secret = <span class="string">'&lt;APP_SECRET&gt;'</span></div><div class="line">app_id = <span class="string">'&lt;APP_ID&gt;'</span></div><div class="line">id = <span class="string">'&lt;ID&gt;'</span></div><div class="line">FacebookAdsApi.init(access_token=access_token)</div><div class="line"></div><div class="line">fields = [</div><div class="line">]</div><div class="line">params = &#123;</div><div class="line">&#125;</div><div class="line"><span class="keyword">print</span> Lead(id).get(</div><div class="line">  fields=fields,</div><div class="line">  params=params,</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># response</div><div class="line">&#123;</div><div class="line">  <span class="attr">"created_time"</span>: <span class="string">"2015-02-28T08:49:14+0000"</span>,</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"&lt;LEAD_ID&gt;"</span>,</div><div class="line">  <span class="attr">"ad_id"</span>: <span class="string">"&lt;AD_ID&gt;"</span>,</div><div class="line">  <span class="attr">"form_id"</span>: <span class="string">"&lt;FORM_ID&gt;"</span>,</div><div class="line">  <span class="attr">"field_data"</span>: [&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"car_make"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"Honda"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"full_name"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"Joe Example"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"email"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"joe@example.com"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"selected_dealer"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"99213450"</span></div><div class="line">    ]</div><div class="line">  &#125;],</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tuwhit.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2018/08/01/userstory/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Newer Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/2018/06/24/dynamostream/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">tuwhit</h1>
+        <div class="custom-widget-content">
+          
+          개발새발 블로그
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/tuwhit" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:tuwhit1202@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+              <a href="https://www.instagram.com/tuwhit/" class="icon icon-instagram" target="_blank">instagram</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <div id="site_search">
+            <p>
+              <input type="text" placeholder="검색" id="local-search-input" name="q" results="0" class="form-control"/>
+            </p>
+              <div id="local-search-result">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/search.js"></script>   
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>개발새발 블로그 &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tuwhit.github.io/"/>
-  <updated>2018-08-02T12:12:54.662Z</updated>
+  <updated>2018-08-02T13:11:49.016Z</updated>
   <id>https://tuwhit.github.io/</id>
   
   <author>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>Principles of Effective Story Writing - The Pivotal Labs Way</title>
-    <link href="https://tuwhit.github.io/2018/08/02/userstory/"/>
-    <id>https://tuwhit.github.io/2018/08/02/userstory/</id>
-    <published>2018-08-02T11:51:29.000Z</published>
-    <updated>2018-08-02T12:12:54.662Z</updated>
+    <link href="https://tuwhit.github.io/2018/08/01/userstory/"/>
+    <id>https://tuwhit.github.io/2018/08/01/userstory/</id>
+    <published>2018-08-01T11:51:29.000Z</published>
+    <updated>2018-08-02T13:11:49.016Z</updated>
     
-    <content type="html"><![CDATA[<hr><p><a href="https://www.pivotaltracker.com/blog/principles-of-effective-story-writing-the-pivotal-labs-way/" target="_blank" rel="external">pivotal labs에서 pivotal tracker를 이용하여 효과적으로 스토리를 작성하는 방법</a>에 대한 아티클을 대충 번역해서 정리해봄.</p><p><img src="/images/pivotal.png" alt="Trigger 추가"></p><h3 id="스토리란"><a href="#스토리란" class="headerlink" title="스토리란?"></a>스토리란?</h3><p>대화와 그 문맥에 대한 placeholder<br>작은 디테일들을 포함할 필요가 없으나, 이야기한 내용을 상기시켜야 하며 모든것을 high level에서 포함해야함<br>how 가 아닌 what 이 진술되어야 함<br>기술적으로 규범화된것이 아니므로, 엔지니어링 팀이 문제의 기능을 구현할 수있는 정확한 정보를 지정할 필요가 없음<br>기능의 이유와 그 기능이 무엇인지 정확하게 설명해야함<br>모든 스토리는 INVEST 모델을 따라야함</p><h4 id="INVEST-model"><a href="#INVEST-model" class="headerlink" title="INVEST model"></a>INVEST model</h4><p>Independent : 의존되지않고 릴리즈 할수있어야함<br>Negotiable : 토론할 준비가 돼있고 팀 인풋에 따라 조정될수있음<br>Valuable : end user 에게 가치를 제공함<br>Estimatable : 개발팀은 스토리의 복잡성을 추정할 수 있음<br>Small : 실제 가치를 제공하는 선에서 가능한 작아야함<br>testable : 테스트의 승인 기준을 포함</p><h3 id="다양한-스토리-타입들"><a href="#다양한-스토리-타입들" class="headerlink" title="다양한 스토리 타입들"></a>다양한 스토리 타입들</h3><h4 id="기능-사용자-스토리-feature"><a href="#기능-사용자-스토리-feature" class="headerlink" title="기능 / 사용자 스토리 (feature)"></a>기능 / 사용자 스토리 (feature)</h4><p>기능 스토리는 유저에게 가치를 제공하는 제품에 추가될수 있는 가장 작은 추가적 기능의 누구에게, 무엇을, 왜를 설명할수 있도록 디자인됨<br>기능 스토리는 개발팀에 의해 포인트가 매겨지고 기능을 완료하는데 걸리는 시간이 아닌 복잡도로 평가됨<br>유저의 관점에서 작성되고 개발팀의 가벼운 요구사항 문서로서의 역할을 함<br>INVEST 모델에 따라 이들은 독립적이어야하며 사용자에게 확실한 가치를 제공해야함</p><h5 id="feature에-포함되어야-하는-것들"><a href="#feature에-포함되어야-하는-것들" class="headerlink" title="feature에 포함되어야 하는 것들"></a>feature에 포함되어야 하는 것들</h5><ul><li>title<ul><li>제목은 짧아야하며 설명가능하고 특정 사용자나 개인을 포함해야함</li><li>예를들어 사용자/개인은 단순히 ‘사용자’가 아닌 특정 타입의 사용자거나 개인이름(예: 토마스)이어야 함</li><li>사람이 아니라 시스템이 사용자인 경우에도 동일하게 작용함(예: 구매 API)</li></ul></li><li>business case<ul><li>누가, 왜, 무엇을 원하는지를 서술</li><li>팀의 모든 구성원들이 해당 기능이 추가되어야하는 이유를 이해할 수 있어야함</li><li>이유를 생각할수 없다면 그 기능이 포함되어야 하는지 다시 판단해봐야함</li><li>비지니스 케이스를 통해 팀원들은 제공된것보다 나은 사용자 경험이 있는지 생각해볼수 있음</li></ul></li><li>acceptance criteria (수락기준?)<ul><li>스토리가 완료되었는지 확인하기 위해 따라야할 사항을 정의함</li><li>해당 스토리를 작업(?)한 개발자는 그것을 제공하기전에 수락 기준을 따라야함</li><li>syntax<ul><li>GIVEN [필요한 context] WHEN [action] THEN [reaction]</li><li>수용 기준에 여러번의 ‘and’를 쓰는걸 발견한다면 스토리를 더 쪼개야 함</li></ul></li></ul></li><li>notes<ul><li>스토리에 필요한 추가적인 정보를 포함함</li><li>ex: 디자인노트, 개발자 노트…</li></ul></li><li>resources<ul><li>기능스토리를 전달하는데 도움을 주는 것들</li><li>ex: 목업, 와이어프레임, 유저플로우, 링크 등</li></ul></li><li>labels<ul><li>스토리들을 그룹핑하는데 효과적임</li><li>ex: Epics, 빌드 넘버, 사용자…</li></ul></li></ul><h4 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h4><p>버그는 이미 수락된 feature의 결함<br>버그를 사용해서 새 기능을 자세히 설명하면 안됨(ex: 가격은 음수가 아니어야함, 로그인 버튼이 작동하지않음)<br>버그들은 이미 전달된 기능과 직접적으로 연관돼있으며 새로운 유저 가치를 제공하지 않으므로 포인트가 없음. 왜냐하면 추정하기가 불가능하고 해결하는데 30초가 걸릴수도 30일이 걸릴수도 있기때문</p><h5 id="bug에-포함되어야-하는-것들"><a href="#bug에-포함되어야-하는-것들" class="headerlink" title="bug에 포함되어야 하는 것들"></a>bug에 포함되어야 하는 것들</h5><ul><li>title : 짧고 설명가능해야함</li><li>description : 현재 무슨일이 일어나고 있는지, 무슨 일이 일어나야 하는가를 서술</li><li>instructions : 버그를 재현하는 단계를 요약하셈</li><li>resources : 스크린샷이나 버그를 설명하는데 도움을 주는 것들</li></ul><h4 id="chore"><a href="#chore" class="headerlink" title="chore"></a>chore</h4><p>chore는 필요하지만 사용자에게 직접적이고 분명한 가치를 제공하지는 않음 (ex: 테스트환경을 위해 새 도메인 및 와일드카드 SSL 인증서를 설치, 시스템 문제해결을 위한 툴 평가)<br>chore는 유저 가치에 직접적으로 기여하지 않으므로 측정할수 없음<br>chore가 유저가치를 제공하는것처럼 느껴지면 featrue stroy에 통합되어야함<br>예를들어 분석서비스를 사용하는 경우 서비스 설치에 관한 추가적인 복잡성은 chore로 분리되지 말고 feature story에 고려되어야함</p><h5 id="chore-스토리에-포함되어야-하는-것들"><a href="#chore-스토리에-포함되어야-하는-것들" class="headerlink" title="chore 스토리에 포함되어야 하는 것들"></a>chore 스토리에 포함되어야 하는 것들</h5><ul><li>title : 짧고 설명가능해야함</li><li>description : 왜 필요한지, 이것이 팀을 더 빠르게하거나 처리되지않으면 코드베이스에서 문제를 일으킬수 있는 의존성이 있는가를 서술</li><li>resources : 작업 수행을 돕는 지침, 추가 컨텍스트등</li></ul>]]></content>
+    <content type="html"><![CDATA[<hr><p><a href="https://www.pivotaltracker.com/blog/principles-of-effective-story-writing-the-pivotal-labs-way/" target="_blank" rel="external">pivotal labs에서 pivotal tracker를 이용하여 효과적으로 스토리를 작성하는 방법</a>에 대한 아티클을 대충 번역해서 정리해봄.</p><p><img src="/images/pivotal.png" alt=""></p><h3 id="스토리란"><a href="#스토리란" class="headerlink" title="스토리란?"></a>스토리란?</h3><p>대화와 그 문맥에 대한 placeholder<br>작은 디테일들을 포함할 필요가 없으나, 이야기한 내용을 상기시켜야 하며 모든것을 high level에서 포함해야함<br>how 가 아닌 what 이 진술되어야 함<br>기술적으로 규범화된것이 아니므로, 엔지니어링 팀이 문제의 기능을 구현할 수있는 정확한 정보를 지정할 필요가 없음<br>기능의 이유와 그 기능이 무엇인지 정확하게 설명해야함<br>모든 스토리는 INVEST 모델을 따라야함</p><h4 id="INVEST-model"><a href="#INVEST-model" class="headerlink" title="INVEST model"></a>INVEST model</h4><p>Independent : 의존되지않고 릴리즈 할수있어야함<br>Negotiable : 토론할 준비가 돼있고 팀 인풋에 따라 조정될수있음<br>Valuable : end user 에게 가치를 제공함<br>Estimatable : 개발팀은 스토리의 복잡성을 추정할 수 있음<br>Small : 실제 가치를 제공하는 선에서 가능한 작아야함<br>testable : 테스트의 승인 기준을 포함</p><h3 id="다양한-스토리-타입들"><a href="#다양한-스토리-타입들" class="headerlink" title="다양한 스토리 타입들"></a>다양한 스토리 타입들</h3><h4 id="기능-사용자-스토리-feature"><a href="#기능-사용자-스토리-feature" class="headerlink" title="기능 / 사용자 스토리 (feature)"></a>기능 / 사용자 스토리 (feature)</h4><p>기능 스토리는 유저에게 가치를 제공하는 제품에 추가될수 있는 가장 작은 추가적 기능의 누구에게, 무엇을, 왜를 설명할수 있도록 디자인됨<br>기능 스토리는 개발팀에 의해 포인트가 매겨지고 기능을 완료하는데 걸리는 시간이 아닌 복잡도로 평가됨<br>유저의 관점에서 작성되고 개발팀의 가벼운 요구사항 문서로서의 역할을 함<br>INVEST 모델에 따라 이들은 독립적이어야하며 사용자에게 확실한 가치를 제공해야함</p><h5 id="feature에-포함되어야-하는-것들"><a href="#feature에-포함되어야-하는-것들" class="headerlink" title="feature에 포함되어야 하는 것들"></a>feature에 포함되어야 하는 것들</h5><ul><li>title<ul><li>제목은 짧아야하며 설명가능하고 특정 사용자나 개인을 포함해야함</li><li>예를들어 사용자/개인은 단순히 ‘사용자’가 아닌 특정 타입의 사용자거나 개인이름(예: 토마스)이어야 함</li><li>사람이 아니라 시스템이 사용자인 경우에도 동일하게 작용함(예: 구매 API)</li></ul></li><li>business case<ul><li>누가, 왜, 무엇을 원하는지를 서술</li><li>팀의 모든 구성원들이 해당 기능이 추가되어야하는 이유를 이해할 수 있어야함</li><li>이유를 생각할수 없다면 그 기능이 포함되어야 하는지 다시 판단해봐야함</li><li>비지니스 케이스를 통해 팀원들은 제공된것보다 나은 사용자 경험이 있는지 생각해볼수 있음</li></ul></li><li>acceptance criteria (수락기준?)<ul><li>스토리가 완료되었는지 확인하기 위해 따라야할 사항을 정의함</li><li>해당 스토리를 작업(?)한 개발자는 그것을 제공하기전에 수락 기준을 따라야함</li><li>syntax<ul><li>GIVEN [필요한 context] WHEN [action] THEN [reaction]</li><li>수용 기준에 여러번의 ‘and’를 쓰는걸 발견한다면 스토리를 더 쪼개야 함</li></ul></li></ul></li><li>notes<ul><li>스토리에 필요한 추가적인 정보를 포함함</li><li>ex: 디자인노트, 개발자 노트…</li></ul></li><li>resources<ul><li>기능스토리를 전달하는데 도움을 주는 것들</li><li>ex: 목업, 와이어프레임, 유저플로우, 링크 등</li></ul></li><li>labels<ul><li>스토리들을 그룹핑하는데 효과적임</li><li>ex: Epics, 빌드 넘버, 사용자…</li></ul></li></ul><h4 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h4><p>버그는 이미 수락된 feature의 결함<br>버그를 사용해서 새 기능을 자세히 설명하면 안됨(ex: 가격은 음수가 아니어야함, 로그인 버튼이 작동하지않음)<br>버그들은 이미 전달된 기능과 직접적으로 연관돼있으며 새로운 유저 가치를 제공하지 않으므로 포인트가 없음. 왜냐하면 추정하기가 불가능하고 해결하는데 30초가 걸릴수도 30일이 걸릴수도 있기때문</p><h5 id="bug에-포함되어야-하는-것들"><a href="#bug에-포함되어야-하는-것들" class="headerlink" title="bug에 포함되어야 하는 것들"></a>bug에 포함되어야 하는 것들</h5><ul><li>title : 짧고 설명가능해야함</li><li>description : 현재 무슨일이 일어나고 있는지, 무슨 일이 일어나야 하는가를 서술</li><li>instructions : 버그를 재현하는 단계를 요약하셈</li><li>resources : 스크린샷이나 버그를 설명하는데 도움을 주는 것들</li></ul><h4 id="chore"><a href="#chore" class="headerlink" title="chore"></a>chore</h4><p>chore는 필요하지만 사용자에게 직접적이고 분명한 가치를 제공하지는 않음 (ex: 테스트환경을 위해 새 도메인 및 와일드카드 SSL 인증서를 설치, 시스템 문제해결을 위한 툴 평가)<br>chore는 유저 가치에 직접적으로 기여하지 않으므로 측정할수 없음<br>chore가 유저가치를 제공하는것처럼 느껴지면 featrue stroy에 통합되어야함<br>예를들어 분석서비스를 사용하는 경우 서비스 설치에 관한 추가적인 복잡성은 chore로 분리되지 말고 feature story에 고려되어야함</p><h5 id="chore-스토리에-포함되어야-하는-것들"><a href="#chore-스토리에-포함되어야-하는-것들" class="headerlink" title="chore 스토리에 포함되어야 하는 것들"></a>chore 스토리에 포함되어야 하는 것들</h5><ul><li>title : 짧고 설명가능해야함</li><li>description : 왜 필요한지, 이것이 팀을 더 빠르게하거나 처리되지않으면 코드베이스에서 문제를 일으킬수 있는 의존성이 있는가를 서술</li><li>resources : 작업 수행을 돕는 지침, 추가 컨텍스트등</li></ul>]]></content>
     
     <summary type="html">
     
@@ -41,6 +41,38 @@
       <category term="pivotal labs" scheme="https://tuwhit.github.io/tags/pivotal-labs/"/>
     
       <category term="유저 중심 스토리" scheme="https://tuwhit.github.io/tags/%EC%9C%A0%EC%A0%80-%EC%A4%91%EC%8B%AC-%EC%8A%A4%ED%86%A0%EB%A6%AC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Facebook Webhooks API로 lead ads와 CRM 통합</title>
+    <link href="https://tuwhit.github.io/2018/07/30/facebook-webhook/"/>
+    <id>https://tuwhit.github.io/2018/07/30/facebook-webhook/</id>
+    <published>2018-07-30T12:14:40.000Z</published>
+    <updated>2018-08-02T13:12:44.349Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>이 페이지는 <a href="https://developers.facebook.com/docs/marketing-api/guides/lead-ads/quickstart/webhooks-integration" target="_blank" rel="external">이 문서</a>를 따라 테스트해보면서 추가적인 내용을 적어둔것이니 문서를 먼저 읽는것이 좋음!</p><h4 id="미리-설정해두면-좋은것들"><a href="#미리-설정해두면-좋은것들" class="headerlink" title="미리 설정해두면 좋은것들"></a>미리 설정해두면 좋은것들</h4><ul><li>App 설정</li><li>Page 설정 및 Lead Ad 설정</li><li>App, Page 관리자 권한 얻기</li></ul><hr><p><img src="/images/webhook.png" alt=""></p><p>테스트를 하면서 알았는데 페이스북 페이지에서 바로 webhook 설정을 할수 있는게 아니었다;<br>Lead ad는 페이스북 페이지에서, webhook은 페이스북 앱에서 각각 설정해줘야하고, 페이스북 페이지를 앱이 구독할수 있도록 승인이 필요하다.<br>즉 Lead ad의 실시간 업데이트가 앱으로 전달되고, 앱에 설정된 webhook을 통해 Lead ad로 받은 고객정보를 처리할수 있게된다.</p><p>문서를 보면 웹서버에 php 파일을 생성하라고 나와있는데, 대신 AWS Lambda와 API Gateway를 사용해서 테스트했다. 로컬서버로 테스트해보려다 잘안돼서 빠른 포기 -.-;;<br>API Gateway에서 메소드 생성시 GET, POST 둘다 생성해줘야한다. (아마 페이지 구독 설정시에는 GET, 실제 lead ad payload 전송시엔 POST 로 보내는듯)</p><p>각 메소드의 Integration Request에서 Use lambda proxy integration에 체크하면 Lambda 함수에 대한 입력을 요청 헤더, 경로 변수, 쿼리 문자열 파라미터 및 본문의 조합으로 표현할 수 있다.<br>해당 API로 들어오는 리퀘스트의 내용을 그대로 Lambda 함수로 전달하고 이것을 event로 쉽게 핸들링할수 있다.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 구독설정시 lambda 함수 예제</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></div><div class="line">    challenge = event[<span class="string">'queryStringParameters'</span>][<span class="string">'hub.challenge'</span>]</div><div class="line">    verify_token = event[<span class="string">'queryStringParameters'</span>][<span class="string">'hub.verify_token'</span>]</div><div class="line"></div><div class="line">    <span class="comment"># if verify_token == 'test_token':</span></div><div class="line">    <span class="comment">#     print(challenge)</span></div><div class="line"></div><div class="line">    response = &#123;</div><div class="line">        <span class="string">"isBase64Encoded"</span>: <span class="keyword">False</span>,</div><div class="line">        <span class="string">"statusCode"</span>: <span class="number">200</span>,</div><div class="line">        <span class="string">"headers"</span>: &#123;&#125;,</div><div class="line">        <span class="string">"body"</span>: challenge</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> response</div></pre></td></tr></table></figure><p>대신 response 형식도 아래와 같이 맞춰줘야한다.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"isBase64Encoded"</span>: <span class="literal">true</span>|<span class="literal">false</span>,</div><div class="line">    <span class="attr">"statusCode"</span>: httpStatusCode,</div><div class="line">    "headers": &#123; "headerName": "headerValue", ... &#125;,</div><div class="line">    "body": "..."</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>모든 설정을 완료한 후에 <a href="https://developers.facebook.com/tools/lead-ads-testing" target="_blank" rel="external">https://developers.facebook.com/tools/lead-ads-testing</a> 에서 테스트를 해보면 제대로 동작해보는지 확인할수 있다.<br>앱 관리 페이지에서 webhook - leadgen Test 에서도 테스트 가능하다.</p><p>body에 유저가 입력한 form data가 같이 넘어오는줄 알았는데 그게 아니었음… 실시간 업데이트에 대한 데이터가 아래처럼 넘어온다. ㅠㅠ<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">array(</div><div class="line">  "object" =&gt; "page",</div><div class="line">  "entry" =&gt; array(</div><div class="line">    "0" =&gt; array(</div><div class="line">      "id" =&gt; 153125381133,</div><div class="line">      "time" =&gt; 1438292065,</div><div class="line">      "changes" =&gt; array(</div><div class="line">        "0" =&gt; array(</div><div class="line">          "field" =&gt; "leadgen",</div><div class="line">          "value" =&gt; array(</div><div class="line">            "leadgen_id" =&gt; 123123123123,</div><div class="line">            "page_id" =&gt; 123123123,</div><div class="line">            "form_id" =&gt; 12312312312,</div><div class="line">            "adgroup_id" =&gt; 12312312312,</div><div class="line">            "ad_id" =&gt; 12312312312,</div><div class="line">            "created_time" =&gt; 1440120384</div><div class="line">          )</div><div class="line">        ),</div><div class="line">        "1" =&gt; array(</div><div class="line">          "field" =&gt; "leadgen",</div><div class="line">          "value" =&gt; array(</div><div class="line">            "leadgen_id" =&gt; 123123123124,</div><div class="line">            "page_id" =&gt; 123123123,</div><div class="line">            "form_id" =&gt; 12312312312,</div><div class="line">            "adgroup_id" =&gt; 12312312312,</div><div class="line">            "ad_id" =&gt; 12312312312,</div><div class="line">            "created_time" =&gt; 1440120384</div><div class="line">          )</div><div class="line">        )</div><div class="line">      )</div><div class="line">    )</div><div class="line">  )</div><div class="line">)</div></pre></td></tr></table></figure></p><p>그래서 넘어온 id를 가지고 Facebook Ads API를 이용해서 데이터를 받아와야한다 ㅠㅠ 페이스북놈들…<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Python Business SDK</span></div><div class="line"><span class="keyword">from</span> facebookads.adobjects.lead <span class="keyword">import</span> Lead</div><div class="line"><span class="keyword">from</span> facebookads.api <span class="keyword">import</span> FacebookAdsApi</div><div class="line"></div><div class="line">access_token = <span class="string">'&lt;ACCESS_TOKEN&gt;'</span></div><div class="line">app_secret = <span class="string">'&lt;APP_SECRET&gt;'</span></div><div class="line">app_id = <span class="string">'&lt;APP_ID&gt;'</span></div><div class="line">id = <span class="string">'&lt;ID&gt;'</span></div><div class="line">FacebookAdsApi.init(access_token=access_token)</div><div class="line"></div><div class="line">fields = [</div><div class="line">]</div><div class="line">params = &#123;</div><div class="line">&#125;</div><div class="line"><span class="keyword">print</span> Lead(id).get(</div><div class="line">  fields=fields,</div><div class="line">  params=params,</div><div class="line">)</div></pre></td></tr></table></figure></p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># response</div><div class="line">&#123;</div><div class="line">  <span class="attr">"created_time"</span>: <span class="string">"2015-02-28T08:49:14+0000"</span>,</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"&lt;LEAD_ID&gt;"</span>,</div><div class="line">  <span class="attr">"ad_id"</span>: <span class="string">"&lt;AD_ID&gt;"</span>,</div><div class="line">  <span class="attr">"form_id"</span>: <span class="string">"&lt;FORM_ID&gt;"</span>,</div><div class="line">  <span class="attr">"field_data"</span>: [&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"car_make"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"Honda"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"full_name"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"Joe Example"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"email"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"joe@example.com"</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"selected_dealer"</span>,</div><div class="line">    <span class="attr">"values"</span>: [</div><div class="line">      <span class="string">"99213450"</span></div><div class="line">    ]</div><div class="line">  &#125;],</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;이 페이지는 &lt;a href=&quot;https://developers.facebook.com/docs/marketing-api/guides/lead-ads/quickstart/webhooks-integration&quot; target=&quot;_blank&quot; 
+      
+    
+    </summary>
+    
+    
+      <category term="Lambda" scheme="https://tuwhit.github.io/tags/Lambda/"/>
+    
+      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
+    
+      <category term="Facebook" scheme="https://tuwhit.github.io/tags/Facebook/"/>
+    
+      <category term="lead ads" scheme="https://tuwhit.github.io/tags/lead-ads/"/>
+    
+      <category term="API Gateway" scheme="https://tuwhit.github.io/tags/API-Gateway/"/>
     
   </entry>
   
@@ -65,9 +97,9 @@
     </summary>
     
     
-      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
-    
       <category term="DynamoDB" scheme="https://tuwhit.github.io/tags/DynamoDB/"/>
+    
+      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
     
       <category term="Stream" scheme="https://tuwhit.github.io/tags/Stream/"/>
     
@@ -95,9 +127,9 @@
     </summary>
     
     
-      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
-    
       <category term="Lambda" scheme="https://tuwhit.github.io/tags/Lambda/"/>
+    
+      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
     
       <category term="Kinesis Firehose" scheme="https://tuwhit.github.io/tags/Kinesis-Firehose/"/>
     
@@ -128,11 +160,11 @@
     </summary>
     
     
-      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
-    
       <category term="Lambda" scheme="https://tuwhit.github.io/tags/Lambda/"/>
     
       <category term="S3" scheme="https://tuwhit.github.io/tags/S3/"/>
+    
+      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
     
       <category term="Kinesis Firehose" scheme="https://tuwhit.github.io/tags/Kinesis-Firehose/"/>
     
@@ -163,13 +195,13 @@
     </summary>
     
     
-      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
-    
       <category term="DynamoDB" scheme="https://tuwhit.github.io/tags/DynamoDB/"/>
     
       <category term="Data Pipeline" scheme="https://tuwhit.github.io/tags/Data-Pipeline/"/>
     
       <category term="S3" scheme="https://tuwhit.github.io/tags/S3/"/>
+    
+      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
     
   </entry>
   
@@ -193,9 +225,9 @@
     </summary>
     
     
-      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
-    
       <category term="S3" scheme="https://tuwhit.github.io/tags/S3/"/>
+    
+      <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
     
       <category term="AuroraDB" scheme="https://tuwhit.github.io/tags/AuroraDB/"/>
     
@@ -226,9 +258,9 @@
     </summary>
     
     
-      <category term="deploy" scheme="https://tuwhit.github.io/tags/deploy/"/>
-    
       <category term="AWS" scheme="https://tuwhit.github.io/tags/AWS/"/>
+    
+      <category term="deploy" scheme="https://tuwhit.github.io/tags/deploy/"/>
     
       <category term="CodePipeline" scheme="https://tuwhit.github.io/tags/CodePipeline/"/>
     

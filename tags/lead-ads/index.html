@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="DynamoDB Stream"/>
+      <meta property="og:title" content="개발새발 블로그"/>
   
   <!--Open Graph Description-->
   
@@ -24,7 +24,7 @@
   <meta property="og:site_name" content="개발새발 블로그"/>
   <!--Type page-->
   
-      <meta property="og:type" content="article" />
+      <meta property="og:type" content="website" />
   
   <!--Page Cover-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>DynamoDB Stream - 개발새발 블로그</title>
+  <title>lead ads - 개발새발 블로그</title>
 
 
   <link rel="shortcut icon" href="/images/favicon.ico">
@@ -113,88 +113,37 @@
 
 
   <!-- Main Content -->
-  <div class="content-area">
-  <div class="post">
-    <!-- Post Content -->
-    <div class="container">
-      <article>
-        <!-- Title date & tags -->
-        <div class="post-header">
-          <h1 class="entry-title">
-            DynamoDB Stream
-            
-          </h1>
-          <p class="posted-on">
-          2018-06-24
-          </p>
-          <div class="tags-links">
-            
-              
-                <a href="/tags/DynamoDB/" rel="tag">
-                  DynamoDB
-                </a>
-              
-                <a href="/tags/AWS/" rel="tag">
-                  AWS
-                </a>
-              
-                <a href="/tags/Stream/" rel="tag">
-                  Stream
-                </a>
-              
-            
-          </div>
-        </div>
-        <!-- Post Main Content -->
-        <div class="entry-content">
-          <hr>
-<p>DynamoDB 스트림은 DynamoDB 테이블 항목의 변경 정보에 대한 흐름을 나타내준다.<br>스트림 이벤트는 INSERT, MODIFY, DELETE 세가지로 나눠진다.</p>
-<p><img src="/images/manage_stream.png" alt="Manage Stream"><br>DDB 테이블의 overview 탭에 보면 Stream Detail 항목이 있는데 여기서 뷰 타입을 설정 가능하다.<br>이벤트가 발생한 아이템의 키만 보여주던지, 새 이미지만 보여주던지, 기존 이미지만 보여주던지, 둘다 보여주던지 총 네가지 타입이 있다.<br>물론 스트림을 비활성화하는것도 가능하다.</p>
-<p><img src="/images/add_trigger.png" alt="Trigger 추가"><br>Trigger 탭에서 스트림에 대한 Lambda 트리거를 쉽게 추가할 수 있다.<br>새 Lambda function을 추가할수도 있고, 존재하는 function을 추가할 수도 있다.<br>function을 추가하면서 batch size도 설정 가능한데 나중에 설정해둔 사이즈를 확인할 수 있는 곳을 못찾아서 한참 헤맸다;<br>해당 Lambda function에 들어가서 Designer 항목에서 DynamoDB를 선택하면 아래에 정보를 띄워준다.<br>이걸 몇달 후에나 알았음 -.-</p>
-<p>수백만건의 데이터를 DynamoDB에 때려넣다가 에러는 안나는데 결과 데이터의 오차율이 너무 커서 꽤 오래 고생을 했는데 원인은 단순했다.<br>DynamoDB Stream은 최대 24시간동안만 저장한다는 사실…<br>트리거 function이 단순한 로직이 아니라면 스트림이 쌓여있다가 트리거가 돌기전에 휘발될수 있으니 주의하자 ㅠㅠ </p>
+  
 
-        </div>
-      </article>
-    </div>
-    <!-- Comments -->
-    <div class="container">
-      <div id="disqus_thread"></div>
-<script>
+<!-- Main Content -->
+<div class="archive content-area">
+  <div class="container">
+    <h1 class="entry-title">#lead ads</h1>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy -->
+        
+        
+          <h2 class="year">2018</h2>
+          <ul class="list">
+            
+  <li>
+    <span class="date">
+      2018-07-30
+    </span>
+    <a href="/2018/07/30/facebook-webhook/" class="title">
+      Facebook Webhooks API로 lead ads와 CRM 통합
+    </a>
+  </li>
 
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://tuwhit.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                            
-    </div>
-    <!-- Pre or Next -->
-    <div class="nav-links">
-      
-        <div class="nav-previous">
-          <a href="/2018/07/30/facebook-webhook/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Newer Posts</a>
-        </div>
-      
-      
-        <div class="nav-next">
-          <a href="/2018/02/15/aurora-to-es/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
-        </div>
-      
-    </div>
 
+          </ul>
+        
+      </div>
+    </div>
   </div>
+  
+
 </div>
 
 
