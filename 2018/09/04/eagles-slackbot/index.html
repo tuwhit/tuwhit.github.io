@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="default">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Hyunkyung Ahn">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="한화뽕에 차서 만든 이글스 슬랙봇"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="개발새발 블로그"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>한화뽕에 차서 만든 이글스 슬랙봇 - 개발새발 블로그</title>
+
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/owl.png" alt="개발새발 블로그" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  rss
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            한화뽕에 차서 만든 이글스 슬랙봇
+            
+          </h1>
+          <p class="posted-on">
+          2018-09-04
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Lambda/" rel="tag">
+                  Lambda
+                </a>
+              
+                <a href="/tags/Slackbot/" rel="tag">
+                  Slackbot
+                </a>
+              
+                <a href="/tags/API Gateway/" rel="tag">
+                  API Gateway
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <hr>
+<p>요즘 11년만에 가을 야구를 할 수 있을것 같다는 기대감에 하루하루 야구보는 낙으로 살고있다.<br>한화뽕에 가득차서 만들게 된 한화 이글스 슬랙봇!(별건 아니고 최근 경기 스코어를 찍어줌)<br>KBO에서 API를 제공하지 않을까? 라는 헛된 기대로 찾아봤지만 역시나 없었음.<br>(KBO 홈페이지에 API 제공 관련해서 올 초에 올라온 문의에도 아직 답변이 안달림; <del>관리좀 해주세요 크보여…</del>)</p>
+<p>Lamba에 Python으로 구현했고, BeautifulSoup을 이용해서 대충 한화이글스 홈 메인페이지에서 긁어오도로 했다.<br>그리고 AWS API Gateway에서 해당 Lambda를 맵핑시켜주면 짱 쉽게 API 하나 뽑은거임.</p>
+<p><img src="/images/eagles_bot.jpeg" alt="왤케 화질구지야"></p>
+<p>선발 숨차게 보이는건 귀찮아서 나중에 수정할 예정,,,</p>
+<p>대충 만들고나니 깨달은 것 두가지</p>
+<ol>
+<li>홈페이지 리뉴얼되면 못씀;</li>
+<li>실제로 야구할 시간엔 슬랙을 쓸일이 거의 없다. 실시간 스코어를 슬랙으로 찍어볼일이… 야근 or 주말 근무를 하지 않는 이상….</li>
+</ol>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tuwhit.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2018/08/01/userstory/" rel="prev">Older Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">tuwhit</h1>
+        <div class="custom-widget-content">
+          
+          개발새발 블로그
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/tuwhit" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:tuwhit1202@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+              <a href="https://www.instagram.com/tuwhit/" class="icon icon-instagram" target="_blank">instagram</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <div id="site_search">
+            <p>
+              <input type="text" placeholder="검색" id="local-search-input" name="q" results="0" class="form-control"/>
+            </p>
+              <div id="local-search-result">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/search.js"></script>   
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>개발새발 블로그 &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>
